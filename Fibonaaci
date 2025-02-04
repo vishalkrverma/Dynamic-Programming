@@ -1,0 +1,26 @@
+import java.util.HashMap;
+class Main{
+    
+    static int fibo(int n){
+        return fibo(n,new HashMap<>());
+    }
+    // We Create the hashmap because insertion and searching operations are done into order O(1).
+    static int fibo(int n,HashMap<Integer,Integer> memo){
+        if(n==0 || n==1){
+            return n;
+        }
+// If the value the k already exist it hit the base case
+        if(memo.containsKey(n)){
+            return memo.get(n);
+        }
+        // we store the result into hashmap by using key-value pairs
+        int result= fibo(n-1,memo)+fibo(n-2,memo);
+        memo.put(n,result);
+
+// if the n reached to the base case then return the required result what we have required
+        return result;
+    }
+    public static void main(String[] ars){
+        System.out.print(fibo(8));
+    }
+}
